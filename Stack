@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Stacks {
+    public static void main(String[] args) {
+        Stack<String> sarray = new Stack<>();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Status of the stack is " + sarray.empty());
+
+        while (true) {
+            System.out.print("Enter an element to push onto the stack (type 'exit' to stop): ");
+            String userInput = scanner.nextLine();
+
+            if (userInput.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            sarray.push(userInput);
+        }
+
+        if (!sarray.empty()) {
+            System.out.print("Do you want to pop an element from the stack? (yes/no): ");
+            String popChoice = scanner.nextLine();
+
+            if (popChoice.equalsIgnoreCase("yes")) {
+                String poppedElement = sarray.pop();
+                System.out.println("Popped element: " + poppedElement);
+            } else if (!popChoice.equalsIgnoreCase("no")) {
+                System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+            }
+        } else {
+            System.out.println("The stack is empty.");
+        }
+
+        System.out.println("Elements of the Stack: " + sarray);
+        System.out.println("Status of the Stack is " + sarray.empty());
+
+        scanner.close();
+    }
+}
