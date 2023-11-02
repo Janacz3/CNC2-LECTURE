@@ -1,0 +1,87 @@
+import java.util.*;
+
+public class Queue {
+    private int front, rear, capacity;
+    private int qarray[];
+
+    // Initialize the queue
+    public Queue(int size) {
+        front = 0;
+        rear = -1;
+        capacity = size;
+        qarray = new int[capacity];
+    }
+
+    // Enqueue operation
+    void insert(int data) {
+        if (rear == capacity - 1) {
+            System.out.println("The queue is full.");
+        } else {
+            qarray[++rear] = data;
+        }
+    }
+
+    // Dequeue operation
+    void remove() {
+        if (front > rear) {
+            System.out.println("The queue is empty.");
+        } else {
+            qarray[front] = 0; // Set the value at the front to 0
+            front++; // Move the front to the next element
+        }
+    }
+
+    // Display the output/queue
+    void qDisplay() {
+        if (front > rear) {
+            System.out.println("The queue is empty.");
+        } else {
+            System.out.print("Front: " + qarray[front] + ", Rear: " + qarray[rear] + "\nQueue Elements: ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print("[" + qarray[i] + "] ");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    // To determine how to display the queue
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue qlist = new Queue(4);
+
+        while (true) {
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Display");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the element to enqueue: ");
+                    int element = scanner.nextInt();
+                    qlist.insert(element);
+                    break;
+
+                case 2:
+                    qlist.remove();
+                    System.out.println("Dequeued an element.");
+                    break;
+
+                case 3:
+                    System.out.print("\n");
+                    qlist.qDisplay();
+                    break;
+
+                case 4:
+                    scanner.close();
+                    System.out.println("Exiting the program.");
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
